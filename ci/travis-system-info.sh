@@ -1,4 +1,4 @@
 #!/bin/bash
 
 uname -a
-#$COMPILER --version
+$COMPILER --version
