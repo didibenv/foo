@@ -6,7 +6,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(dialect "")
 else ()
     set(warnings "-Wall -Wextra")
-    set(dialect "-std=c++14")
+    set(dialect "-std=c++11")
 endif ()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${dialect} ${warnings}")
