@@ -16,6 +16,7 @@ endif ()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${dialect} ${warnings}")
 
 # dependencies
+include(GenerateExportHeader)
 include(AddCatch)
 include_directories(${CATCH_INCLUDE_DIR})
 
@@ -25,6 +26,9 @@ file(GLOB sources src/*.cpp include/*.hpp)
 
 add_library(foo SHARED ${sources})
 set_target_properties(foo PROPERTIES LINKER_LANGUAGE CXX)
+
+generate_export_header(foo EXPORT_FILE_NAME "${CMAKE_BINARY_DIR}/exports/FooExport.h")
+target_include_directories(foo PUBLIC ${CMAKE_BINARY_DIR}/exports)
 
 enable_testing(true)
 add_subdirectory(test)
