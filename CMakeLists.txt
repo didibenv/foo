@@ -29,6 +29,7 @@ set_target_properties(foo PROPERTIES LINKER_LANGUAGE CXX)
 
 generate_export_header(foo EXPORT_FILE_NAME "${CMAKE_BINARY_DIR}/exports/FooExport.h")
 target_include_directories(foo PUBLIC ${CMAKE_BINARY_DIR}/exports)
+#include_directories(${PROJECT_SOURCE_DIR}/exports)
 
 enable_testing(true)
 add_subdirectory(test)

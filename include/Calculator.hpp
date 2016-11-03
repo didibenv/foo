@@ -1,7 +1,7 @@
 #ifndef FOO_CALCULATOR_H
 #define FOO_CALCULATOR_H
 
-#include "foo_export.h"
+#include "FooExport.h"
 
 namespace Foo {
 
