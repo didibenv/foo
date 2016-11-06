@@ -3,7 +3,7 @@
 
 #include "FooExport.h"
 
-namespace Foo {
+namespace foo {
 
 class FOO_EXPORT Calculator {
   public:

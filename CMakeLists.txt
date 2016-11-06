@@ -10,7 +10,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(dialect "")
 else ()
     set(warnings "-Wall -Wextra")
-    set(dialect "-std=c++11")
+    set(dialect "-std=c++14")
 endif ()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${dialect} ${warnings}")
@@ -22,7 +22,7 @@ include_directories(${CATCH_INCLUDE_DIR})
 
 # targets
 include_directories(include include/foo)
-file(GLOB sources src/*.cpp include/foo/*.hpp)
+file(GLOB sources src/*.cpp include/*.hpp include/foo/*.hpp)
 
 add_library(foo SHARED ${sources})
 set_target_properties(foo PROPERTIES LINKER_LANGUAGE CXX)
