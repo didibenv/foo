@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2)
 project(foo)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules")
@@ -6,7 +6,7 @@ set(EXT_PROJECTS_DIR externals)
 
 # compiler setup
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-    set(warnings "/W4 /WX")
+    set(warnings "/W3 /WX")
     set(dialect "")
 else ()
     set(warnings "-Wall -Wextra")
