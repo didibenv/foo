@@ -21,8 +21,8 @@ include(AddCatch)
 include_directories(${CATCH_INCLUDE_DIR})
 
 # targets
-include_directories(include)
-file(GLOB sources src/*.cpp include/*.hpp)
+include_directories(include include/foo)
+file(GLOB sources src/*.cpp include/foo/*.hpp)
 
 add_library(foo SHARED ${sources})
 set_target_properties(foo PROPERTIES LINKER_LANGUAGE CXX)
@@ -35,7 +35,8 @@ install(TARGETS foo
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
 
-INSTALL(DIRECTORY include/ DESTINATION include/foo)
+install(DIRECTORY include/foo DESTINATION include)
+install(FILES ${CMAKE_BINARY_DIR}/exports/FooExport.h DESTINATION include/foo)
 
 enable_testing(true)
 add_subdirectory(test)
