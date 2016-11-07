@@ -2,7 +2,6 @@
 #define FOO_FILELOGGER_H
 
 #include <ostream>
-#include <memory>
 #include <string>
 
 #include "FooExport.h"
@@ -17,8 +16,7 @@ class FOO_EXPORT FileLogger {
     void write(const std::string& log);
 
   private:
-    class impl;
-    std::unique_ptr<impl> pimpl;
+    std::ostream& output;
 };
 
 }
