@@ -1,16 +1,16 @@
 #include "LogFormatter.hpp"
 
-#include <algorithm>
-#include <ctime>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 
 namespace foo {
 
 std::string LogFormatter::getTimeStamp() {
-  const auto time = std::time(nullptr);
-  std::string str = std::string{std::asctime(std::localtime(&time))};
-  str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
+  const auto now = std::chrono::system_clock::now();
+  const auto nowTime = std::chrono::system_clock::to_time_t(now);
 
-  return str;
+  return std::to_string(nowTime);
 }
 
 } // namespace foo
