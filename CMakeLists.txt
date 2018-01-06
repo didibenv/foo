@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.2)
-project(foo)
+cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+project(foo VERSION 0.1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules")
 set(EXT_PROJECTS_DIR externals)
