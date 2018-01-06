@@ -36,3 +36,9 @@ externals
 
 # Exports
 exports
+
+# User temp
+**/CMakeLists.txt.user
+
+# Build
+**/build
