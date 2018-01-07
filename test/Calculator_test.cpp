@@ -1,6 +1,6 @@
 #include <catch.hpp>
 
-#include "Calculator.hpp"
+#include "foo/Calculator.hpp"
 
 namespace {
 

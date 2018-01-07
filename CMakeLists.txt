@@ -1,12 +1,9 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project(foo VERSION 0.1.0 LANGUAGES CXX)
 
+# compiler setup:
 set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules")
-set(EXT_PROJECTS_DIR externals)
-
-# compiler setup
 if(MSVC)
   add_compile_options(/W4 /w14545 /w34242 /w34254 /w34287 /w44263 /w44265 
     /w44296 /w44311 /w44826 /we4289 /w14546 /w14547 /w14549 /w14555 /w14619 
@@ -17,22 +14,30 @@ else()
     -Woverloaded-virtual -pedantic)
 endif()
 
-# dependencies
+# dependencies:
 include(GenerateExportHeader)
 
 add_library(catch INTERFACE)
 target_include_directories(catch INTERFACE libs/Catch2/single_include)
 
-# targets
-include_directories(include include/foo)
-file(GLOB sources src/*.cpp include/*.hpp include/foo/*.hpp)
+# targets:
+set(sources
+  include/foo/Calculator.hpp
+  include/foo/FileLogger.hpp
+  include/LogFormatter.hpp
+  src/FileLogger.cpp
+  src/LogFormatter.cpp)
 
 add_library(foo SHARED ${sources})
-set_target_properties(foo PROPERTIES LINKER_LANGUAGE CXX)
-
 generate_export_header(foo EXPORT_FILE_NAME "${CMAKE_BINARY_DIR}/exports/FooExport.h")
-target_include_directories(foo PUBLIC ${CMAKE_BINARY_DIR}/exports)
+target_include_directories(foo 
+  PUBLIC 
+    include
+    ${CMAKE_BINARY_DIR}/exports
+  PRIVATE
+    include/foo)
 
+# install:
 install(TARGETS foo
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
